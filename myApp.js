@@ -20,7 +20,7 @@ app.listen(port, () => {
   console.log(`Eryl Jana Carillo Information Security App started on Port ${port}`);
 });
 
-
+app.use(helmet.hidePoweredBy());
 /*app.listen(port, () => {
   console.log(`Your app is listening on port ${port}`);
 });
