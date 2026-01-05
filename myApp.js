@@ -4,6 +4,7 @@ const app = express();
 
 const api = require('./server.js');
 
+app.use(helmet());
 app.use(helmet.hidePoweredBy());
 
 
