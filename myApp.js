@@ -9,6 +9,8 @@ app.disable('strict-transport-security');
 
 app.use('/_api', api);
 
+app.use(helmet.hidePoweredBy());
+app.disable('x-powered-by');
 
 app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
@@ -20,7 +22,7 @@ app.listen(port, () => {
   console.log(`Eryl Jana Carillo Information Security App started on Port ${port}`);
 });
 
-app.use(helmet.hidePoweredBy());
+
 /*app.listen(port, () => {
   console.log(`Your app is listening on port ${port}`);
 });
