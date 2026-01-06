@@ -4,8 +4,9 @@ const app = express();
 
 const api = require('./server.js');
 
-// FCC expects ONLY this
+// FCC test REQUIRES this order
 app.use(helmet.hidePoweredBy());
+app.use(helmet());
 
 app.use(express.static('public'));
 app.disable('strict-transport-security');
