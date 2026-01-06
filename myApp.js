@@ -4,9 +4,10 @@ const app = express();
 
 const api = require('./server.js');
 
-// FCC test REQUIRES this order
-app.use(helmet.hidePoweredBy());
 app.use(helmet());
+
+// THIS is what actually removes the header
+app.disable('x-powered-by');
 
 app.use(express.static('public'));
 app.disable('strict-transport-security');
