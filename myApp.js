@@ -21,9 +21,16 @@ app.use(helmet.hsts({
 }));
 // 8. disable DNS Prefetching
 app.use(helmet.dnsPrefetchControl());
-
-//// NEW 9. added helmet.noCache to disable client-side caching
+//9. added helmet.noCache to disable client-side caching
 app.use(helmet.noCache());
+
+// NEW 10. Content Security Policy configuration
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", "trusted-cdn.com"]
+  }
+}));
 
 module.exports = app;
 const api = require('./server.js');
