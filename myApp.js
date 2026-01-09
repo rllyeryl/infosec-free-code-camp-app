@@ -1,11 +1,15 @@
 const express = require('express');
-const helmet = require('helmet'); // 1. Added this
+// 1. required helmet here:
+const helmet = require('helmet'); 
 const app = express();
 
-// Used helmet here
+// 2. used helmet.hidePoweredby here:
 app.use(helmet.hidePoweredBy()); 
-
+// 3. used helmet.frameguard here:
 app.use(helmet.frameguard({ action: 'deny' }));
+
+// NEW 4. used helmet.xddFilter to help mitigate Cross-Site Scripting (XSS) attacks
+app.use(helmet.xssFilter());
 
 module.exports = app;
 const api = require('./server.js');
