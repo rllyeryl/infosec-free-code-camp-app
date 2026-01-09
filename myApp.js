@@ -9,9 +9,11 @@ app.use(helmet.hidePoweredBy());
 app.use(helmet.frameguard({ action: 'deny' }));
 // 4. used helmet.xssFilter to help mitigate Cross-Site Scripting (XSS) attacks
 app.use(helmet.xssFilter());
-
-// NEW 5. used helmet.noSniff to prevent the browser from "sniffing" the MIME type
+// 5. used helmet.noSniff to prevent the browser from "sniffing" the MIME type
 app.use(helmet.noSniff());
+
+// NEW 6. used helmet.ieNoOpen to prevents IE from executing downloads in site's context
+app.use(helmet.ieNoOpen());
 
 module.exports = app;
 const api = require('./server.js');
