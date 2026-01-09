@@ -13,13 +13,15 @@ app.use(helmet.xssFilter());
 app.use(helmet.noSniff());
 // 6. used helmet.ieNoOpen to prevents IE from executing downloads in site's context
 app.use(helmet.ieNoOpen());
-
-// NEW 7. HSTS configuration
+// 7. HSTS configuration
 const ninetyDaysInSeconds = 90 * 24 * 60 * 60;
 app.use(helmet.hsts({ 
   maxAge: ninetyDaysInSeconds, 
   force: true 
 }));
+
+// NEW 8. Disable DNS Prefetching
+app.use(helmet.dnsPrefetchControl());
 
 module.exports = app;
 const api = require('./server.js');
