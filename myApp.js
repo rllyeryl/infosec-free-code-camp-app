@@ -7,9 +7,11 @@ const app = express();
 app.use(helmet.hidePoweredBy()); 
 // 3. used helmet.frameguard here:
 app.use(helmet.frameguard({ action: 'deny' }));
-
-// NEW 4. used helmet.xddFilter to help mitigate Cross-Site Scripting (XSS) attacks
+// 4. used helmet.xssFilter to help mitigate Cross-Site Scripting (XSS) attacks
 app.use(helmet.xssFilter());
+
+// NEW 5. used helmet.noSniff to prevent the browser from "sniffing" the MIME type
+app.use(helmet.noSniff());
 
 module.exports = app;
 const api = require('./server.js');
