@@ -11,9 +11,15 @@ app.use(helmet.frameguard({ action: 'deny' }));
 app.use(helmet.xssFilter());
 // 5. used helmet.noSniff to prevent the browser from "sniffing" the MIME type
 app.use(helmet.noSniff());
-
-// NEW 6. used helmet.ieNoOpen to prevents IE from executing downloads in site's context
+// 6. used helmet.ieNoOpen to prevents IE from executing downloads in site's context
 app.use(helmet.ieNoOpen());
+
+// NEW 7. HSTS configuration
+const ninetyDaysInSeconds = 90 * 24 * 60 * 60;
+app.use(helmet.hsts({ 
+  maxAge: ninetyDaysInSeconds, 
+  force: true 
+}));
 
 module.exports = app;
 const api = require('./server.js');
