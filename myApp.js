@@ -5,7 +5,7 @@ const app = express();
 // Used helmet here
 app.use(helmet.hidePoweredBy()); 
 
-
+app.use(helmet.frameguard({ action: 'deny' }));
 
 module.exports = app;
 const api = require('./server.js');
