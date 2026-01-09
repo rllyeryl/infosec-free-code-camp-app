@@ -1,24 +1,21 @@
 const express = require('express');
-const helmet = require('helmet');
+const helmet = require('helmet'); // 1. Added this
 const app = express();
 
+// Used helmet here
+app.use(helmet.hidePoweredBy()); 
+
+
+
+module.exports = app;
 const api = require('./server.js');
-
-app.use(helmet());
-
-// THIS is what actually removes the header
-app.disable('x-powered-by');
-
 app.use(express.static('public'));
 app.disable('strict-transport-security');
-
 app.use('/_api', api);
-
 app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
-
-const port = process.env.PORT || 3000;
+let port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Your app is listening on port ${port}`);
 });
